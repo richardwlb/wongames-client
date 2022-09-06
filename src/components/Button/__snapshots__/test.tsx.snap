@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Should render the component Button 1`] = `
+.c0 {
+  background-color: #06092b;
+}
+
+<main
+  class="c0"
+>
+  <h3>
+    Button
+  </h3>
+</main>
+`;
