@@ -16,21 +16,39 @@ describe('Menu', () => {
   it('should handle the open/close menu', () => {
     renderWithTheme(<Menu />);
 
-    // Seleciona Menu
+    // Selecionar Menu
     const fullMenuElement = screen.getByRole('navigation', { hidden: true });
 
     // Verificar se esta fechado
     expect(fullMenuElement.getAttribute('aria-hidden')).toBe('true');
     expect(fullMenuElement).toHaveStyle({ opacity: 0 });
 
-    // Abre Menu e verifica se esta aberto
+    // Abrir Menu e verificar se esta aberto
     fireEvent.click(screen.getByLabelText(/Open Menu/i));
     expect(fullMenuElement.getAttribute('aria-hidden')).toBe('false');
     expect(fullMenuElement).toHaveStyle({ opacity: 1 });
 
-    // Fecha Menu e verifica se fechou
+    // Fechar Menu e verificar se fechou
     fireEvent.click(screen.getByLabelText(/Close Menu/i));
     expect(fullMenuElement.getAttribute('aria-hidden')).toBe('true');
     expect(fullMenuElement).toHaveStyle({ opacity: 0 });
+  });
+
+  it('should show register box when logged out', () => {
+    renderWithTheme(<Menu />);
+
+    expect(screen.queryByText(/my account/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/wishlist/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/log in now/i)).toBeInTheDocument();
+    expect(screen.getByText(/sign up/i)).toBeInTheDocument();
+  });
+
+  it('should show wishlight and account when logged in', () => {
+    renderWithTheme(<Menu username="will" />);
+
+    expect(screen.getByText(/my account/i)).toBeInTheDocument();
+    expect(screen.getByText(/wishlist/i)).toBeInTheDocument();
+    expect(screen.queryByText(/log in now/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument();
   });
 });
