@@ -10,7 +10,7 @@
   },
   "prettier.tabWidth": 2,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "javascript.updateImportsOnFileMove.enabled": "never",
   "npm.packageManager": "yarn"
